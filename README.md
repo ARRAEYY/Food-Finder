@@ -72,7 +72,7 @@ Users often struggle to find specific food items nearby without manually checkin
 
 ---
 
-## 🧠 Concepts Covered
+# Concepts Covered
 
 * API integration
 * Promises and asynchronous programming
@@ -82,7 +82,7 @@ Users often struggle to find specific food items nearby without manually checkin
 
 ---
 
-## 📂 Project Structure
+# Project Structure
 
 ```
 food-finder-pro/
@@ -96,28 +96,21 @@ food-finder-pro/
 ---
 ---
 
-## 🔮 Future Enhancements
+# Future Enhancements
 
-* 🗺️ Map integration for visual location display
-* 🌙 Dark mode / Light mode toggle
-* 🔁 Debounced search for better performance
-* 📜 Pagination or infinite scrolling
-* 💾 Save favorites using local storage
-
----
-
-## 📅 Milestone Submission
-
-This project is developed as part of a structured milestone-based assignment:
-
-* ✅ Milestone 1: Project planning and setup
-* ⏳ Milestone 2: API integration
-* ⏳ Milestone 3: Core features implementation
-* ⏳ Milestone 4: Deployment and final submission
+*  Map integration for visual location display
+*  Dark mode / Light mode toggle
+*  Debounced search for better performance
+*  Pagination or infinite scrolling
+*  Save favorites using local storage
 
 ---
 
-## 💪 Final Note
+
+
+---
+
+# Final Note
 
 This project focuses on building a practical and user-friendly solution while applying core web development concepts. It aims to combine functionality with clean UI and efficient JavaScript practices.
 
