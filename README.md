@@ -94,25 +94,6 @@ food-finder-pro/
 ```
 
 ---
-
-## ⚙️ Setup Instructions
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/food-finder-pro.git
-   ```
-
-2. Navigate to the project folder:
-
-   ```bash
-   cd food-finder-pro
-   ```
-
-3. Open `index.html` in your browser
-
-4. Enter a food item and explore nearby restaurants
-
 ---
 
 ## 🔮 Future Enhancements
