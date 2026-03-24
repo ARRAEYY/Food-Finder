@@ -2,7 +2,7 @@
 
 # Project Overview
 
-Food Finder Pro is a web application that helps users discover nearby restaurants or hotels serving a specific food item. By simply entering a dish name like *pizza*, *biryani*, or *burger*, users can explore places where that food is available along with useful details such as location and ratings.
+Food Finder is a web application that helps users discover nearby restaurants or hotels serving a specific food item. By simply entering a dish name like *pizza*, *biryani*, or *burger*, users can explore places where that food is available along with useful details such as location and ratings.
 
 ---
 
