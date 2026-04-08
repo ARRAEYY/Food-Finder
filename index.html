@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food-Finder</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Food Finder</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main">
-    <h1 class="title">Find Your Favorite Food !</h1>
-    <input type="text" placeholder="Enter Food Name:eg:Biryani,Pizza..." id="Input">
-    <button id="search">Search</button>
-    </div>
-    <div class="container"></div>
 
-    
+  <div class="main">
+    <h1>🍔 Food Finder</h1>
+
+    <input id="input" placeholder="Search food..." type="text"/>
+    <button id="search">Search</button>
+
+    <select id="sort">
+      <option value="">Sort</option>
+      <option value="az">A → Z</option>
+      <option value="za">Z → A</option>
+    </select>
+
+    <button id="theme">🌙</button>
+  </div>
+
+  <div class="container"></div>
+
+  <script src="script.js" defer></script>
 </body>
-<script src="script.js"></script>
 </html>
