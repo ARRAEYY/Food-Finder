@@ -1,8 +1,10 @@
 # Food Finder
 
+---
+
 # Project Overview
 
-Food Finder is a web application that helps users discover nearby restaurants or hotels serving a specific food item. By simply entering a dish name like *pizza*, *biryani*, or *burger*, users can explore places where that food is available along with useful details such as location and ratings.
+Food Finder is a web application that helps users explore different food dishes and discover detailed information about them. By simply entering a dish name such as *pizza*, *biryani*, or *burger*, users can view a list of meals along with images, ingredients, instructions, and additional details in an interactive interface.
 
 ---
 
@@ -13,57 +15,66 @@ The objective of this project is to demonstrate:
 * JavaScript fundamentals
 * API integration using `fetch()`
 * Dynamic UI rendering
-* Use of Array Higher-Order Functions (HOFs) like `map`, `filter`, and `sort`
+* Responsive web design
+* Use of Array Higher-Order Functions (HOFs) such as `map` and `sort`
+* Local storage usage for saving user preferences
 
 ---
 
 # Problem Statement
 
-Users often struggle to find specific food items nearby without manually checking multiple apps. This application simplifies the process by providing all relevant information in one place.also user is unable to decide from where should they go
+Users often want to explore new dishes or learn how to prepare a meal but lack a simple platform that provides structured and detailed information in one place. This application simplifies the process by allowing users to search for meals and instantly access complete recipe details in a user-friendly format.
 
 ---
 
-#Key Features
+# Key Features
 
-# Search Functionality
+## Search Functionality
 
 * Search for any food item (e.g., pizza, burger, biryani)
-* Fetch and display relevant nearby restaurants
+* Fetch and display meals dynamically from the API
 
-# Location Details
+## Detailed Meal View
 
-* Shows restaurant address
+* Click on any dish to view:
 
-#  Ratings Display
+  * Ingredients
+  * Cooking instructions
+  * Category and origin
+  * Embedded video tutorial (if available)
 
-* Displays ratings to help users choose the best option
+## Sorting (Using HOFs)
 
-# Filtering (Using HOFs)
+* Sort meals alphabetically:
 
-* Filter restaurants based on rating (e.g., 4+ stars)
-* Filter restaurants based on pricing (e.g., under 500)
+  * A → Z
+  * Z → A
 
-# Sorting (Using HOFs)
+## Favorites System
 
-* Sort results by:
+* Mark meals as liked
+* Save preferences using local storage
 
-  * Rating (high to low)
-  * Price (high to low)
+## Responsive Design
 
-#  Favorites (Planned)
+* Mobile: Single column layout
+* Tablet: Two-column layout
+* Desktop: Grid-based layout
 
-* Save preferred restaurants using local storage
+## Dark Mode
+
+* Toggle between light and dark themes for better user experience
 
 ---
 
 # API Used
 
-* **Geoapify Places API**
-  Used to fetch restaurant and location data based on user search queries.
+* **TheMealDB API**
+  Used to fetch meal data, including recipes, images, and additional details.
 
 ---
 
-#  Technologies Used
+# Technologies Used
 
 * HTML
 * CSS
@@ -77,41 +88,38 @@ Users often struggle to find specific food items nearby without manually checkin
 * API integration
 * Promises and asynchronous programming
 * DOM manipulation
-* Array higher-order functions (`map`, `filter`, `sort`)
+* Array higher-order functions (`map`, `sort`)
 * Event handling
+* Responsive design using media queries
 
 ---
 
 # Project Structure
 
 ```
-food-finder-pro/
+Food-Finder/
 │
 ├── index.html
+├──media.css
 ├── style.css
 ├── script.js
 ├── README.md
 ```
 
 ---
----
 
 # Future Enhancements
 
-*  Map integration for visual location display
-*  Dark mode / Light mode toggle
-*  Debounced search for better performance
-*  Pagination or infinite scrolling
-*  Save favorites using local storage
-
----
-
-
+* Location of Nearby resturant and rating
+* Advanced filtering (category, cuisine)
+* Favorites page for saved meals
+* Live search without button
+* Improved UI/UX design
+* Pagination or infinite scrolling
+* Deployment on Vercel or Netlify
 
 ---
 
 # Final Note
 
-This project focuses on building a practical and user-friendly solution while applying core web development concepts. It aims to combine functionality with clean UI and efficient JavaScript practices.
-
----
+This project focuses on building a practical and user-friendly application while applying core web development concepts. It combines API integration, responsive design, and interactive UI elements to create a complete and functional food exploration platform.
