@@ -1,117 +1,156 @@
+// Get elements
 const container = document.querySelector(".container");
-const inputBox = document.getElementById("input");
+const input = document.getElementById("input");
 const searchBtn = document.getElementById("search");
-const sortSelect = document.getElementById("sort");
+const sort = document.getElementById("sort");
 const themeBtn = document.getElementById("theme");
 
+const modal = document.getElementById("mealModal");
+const modalBody = document.getElementById("modalBody");
+const closeModal = document.getElementById("closeModal");
 
-
+// Store meals
 let meals = [];
 
-
-
-async function fetchMeals(searchText = "salad") {
+// Load meals
+async function fetchMeals(text = "salad") {
   container.innerHTML = "<h2>Loading...</h2>";
 
   try {
-    const response = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
+    const res = await fetch(
+      `https://themealdb.com/api/json/v1/1/search.php?s=${text}`
     );
 
-    const data = await response.json();
-    meals = data.meals ? data.meals : [];
+    const data = await res.json();
+    meals = data.meals || [];
 
-    displayMeals();
-  } catch (error) {
-    container.innerHTML = "<h2>Something went wrong ❌</h2>";
+    loadLikes();
+    showMeals();
+
+  } catch {
+    container.innerHTML = "<h2>Network error ❌</h2>";
   }
 }
 
-
-function displayMeals() {
-
+// Show meals
+function showMeals() {
   if (meals.length === 0) {
     container.innerHTML = "<h2>No meals found 😢</h2>";
     return;
   }
 
-  
-  let mealsToShow = [...meals];
+  let list = [...meals];
 
-  
-  if (sortSelect.value === "az") {
-    mealsToShow.sort((a, b) =>
-      a.strMeal.localeCompare(b.strMeal)
-    );
+  // Sorting
+  if (sort.value === "az") {
+    list.sort((a, b) => a.strMeal.localeCompare(b.strMeal));
+  } else if (sort.value === "za") {
+    list.sort((a, b) => b.strMeal.localeCompare(a.strMeal));
   }
 
-  if (sortSelect.value === "za") {
-    mealsToShow.sort((a, b) =>
-      b.strMeal.localeCompare(a.strMeal)
-    );
-  }
-
-  
-  let html = "";
-
-  mealsToShow.forEach((meal) => {
-    html += `
-      <div class="card">
-        <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-        <h3>${meal.strMeal}</h3>
-        <button onclick="toggleLike('${meal.idMeal}')">
-          ${meal.liked ? "❤️" : "🤍"}
-        </button>
-      </div>
-    `;
-  });
-
-  container.innerHTML = html;
+  // Create cards
+  container.innerHTML = list.map(meal => `
+    <div class="card" onclick="openDetails('${meal.idMeal}')">
+      <img src="${meal.strMealThumb}">
+      <h3>${meal.strMeal}</h3>
+      <button onclick="event.stopPropagation(); likeMeal('${meal.idMeal}')">
+        ${meal.liked ? "❤️" : "🤍"}
+      </button>
+    </div>
+  `).join("");
 }
 
+// Like system
+function likeMeal(id) {
+  let liked = JSON.parse(localStorage.getItem("liked")) || [];
 
-function toggleLike(id) {
-  meals = meals.map((meal) => {
-    if (meal.idMeal === id) {
-
-      return { ...meal, liked: !meal.liked };
-    } else {
-      return meal;
-    }
-  });
-
-  displayMeals();
-}
-
-
-
-function handleSearch() {
-  const text = inputBox.value.trim();
-
-  if (text === "") {
-    fetchMeals(); 
+  if (liked.includes(id)) {
+    liked = liked.filter(x => x !== id);
   } else {
-    fetchMeals(text);
+    liked.push(id);
+  }
+
+  localStorage.setItem("liked", JSON.stringify(liked));
+  loadLikes();
+  showMeals();
+}
+
+// Load liked data
+function loadLikes() {
+  let liked = JSON.parse(localStorage.getItem("liked")) || [];
+
+  meals = meals.map(meal => ({
+    ...meal,
+    liked: liked.includes(meal.idMeal)
+  }));
+}
+
+// Search
+function handleSearch() {
+  const text = input.value.trim();
+  fetchMeals(text || "salad");
+}
+
+searchBtn.onclick = handleSearch;
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") handleSearch();
+});
+
+// Sort
+sort.onchange = showMeals;
+
+// Theme
+themeBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+};
+
+// Show details
+async function openDetails(id) {
+  try {
+    const res = await fetch(
+      `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+    );
+
+    const data = await res.json();
+    const meal = data.meals[0];
+
+    let ingredients = "";
+
+    for (let i = 1; i <= 20; i++) {
+      if (meal["strIngredient" + i]) {
+        ingredients += `<li>${meal["strIngredient" + i]}</li>`;
+      }
+    }
+
+    modalBody.innerHTML = `
+      <h2>${meal.strMeal}</h2>
+      <img src="${meal.strMealThumb}">
+      <p><b>Category:</b> ${meal.strCategory}</p>
+      <p><b>Area:</b> ${meal.strArea}</p>
+
+      <h3>Ingredients</h3>
+      <ul>${ingredients}</ul>
+
+      <h3>Instructions</h3>
+      <p>${meal.strInstructions}</p>
+    `;
+
+    modal.classList.remove("hidden");
+
+  } catch {
+    alert("Error loading details");
   }
 }
 
+// Close modal
+closeModal.onclick = () => modal.classList.add("hidden");
 
-searchBtn.addEventListener("click", handleSearch);
-
-inputBox.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    handleSearch();
+modal.onclick = (e) => {
+  if (e.target === modal) {
+    modal.classList.add("hidden");
   }
-});
+};
 
-
-sortSelect.addEventListener("change", displayMeals);
-
-
-themeBtn.addEventListener("click", function () {
-  document.body.classList.toggle("dark");
-});
-
-
-
-fetchMeals(); 
+// Start app
+fetchMeals();

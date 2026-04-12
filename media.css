@@ -1,0 +1,57 @@
+
+@media (max-width: 768px) {
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input, button, select {
+    width: 90%;
+    max-width: 300px;
+  }
+  .container {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .card {
+    width: 45%; 
+  }
+}
+
+@media (max-width: 480px) {
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;   
+  }
+
+  input, button, select {
+    width: 95%;
+    font-size: 14px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+
+@media (min-width: 1200px) {
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .card {
+    width: 220px;
+  }
+}
